@@ -38,11 +38,7 @@ For the next 3 sprints (Each sprint of 3 weeks) the epics are:
 * Build the front end app
 * Performing sanity check using test cases
 
-<!-- toc -->
-<!-- toc -->
-<!-- toc -->
-<!-- toc -->
-<!-- toc -->
+----------------------------------------------------------------------------------------------------------------------------------------
 
 
 
