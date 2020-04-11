@@ -2,8 +2,8 @@
 Created by - Manish Kumar (MSiA Class of 2020)
 QA by Skye Sheng
 <!-- toc -->
-- [Project Charter]
-- [Sprint Plan]
+- [Project Charter](#Project-Charter)
+- [Sprint Plan](#Sprint-Plan)
 
 ## Project Charter
 <!-- toc -->
