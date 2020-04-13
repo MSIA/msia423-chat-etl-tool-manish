@@ -39,7 +39,7 @@ Once the right transformation is identified the execution of those transformatio
 * Story 2: Perform standard text cleaning
 #### Epic-2
 * Story 1: Train the model on the set and check for its accuracy
-* Story 2: Save the model in pickel format
+* Story 2: Save the model in pickle format
 
 ### Initiative 3 : Generic script for carrying out ETL operation, Integration with front end
 #### Epic-1
