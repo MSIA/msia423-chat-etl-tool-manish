@@ -1,5 +1,5 @@
-export MYSQL_USER=admin
-export MYSQL_PASSWORD=Manish!123
-export MYSQL_HOST=msia423-manish.cmqeocuq67tb.us-east-2.rds.amazonaws.com
-export MYSQL_PORT=3306
+export MYSQL_USER=<user_name>
+export MYSQL_PASSWORD=<password>
+export MYSQL_HOST=<host_name>
+export MYSQL_PORT=<port>
 export DATABASE_NAME=msia423_db
