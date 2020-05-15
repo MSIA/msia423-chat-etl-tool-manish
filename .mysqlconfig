@@ -1,5 +1,0 @@
-export MYSQL_USER=<user_name>
-export MYSQL_PASSWORD=<password>
-export MYSQL_HOST=<host_name>
-export MYSQL_PORT=<port>
-export DATABASE_NAME=msia423_db
