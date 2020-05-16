@@ -67,6 +67,11 @@ Business impact of the project is going to be studied using a carefully designed
 
 
 - [Directory structure](#directory-structure)
+- [Build the docker image](#Build the docker image)
+- [To copy file on S3](#To copy file on S3)
+- [To create Database locally](#To create Database locally)
+- [To create Database on AWS RDS](#To create Database on AWS RDS)
+- [Setting the environment variables](#Setting the environment variables)
 - [Running the app](#running-the-app)
   * [1. Initialize the database](#1-initialize-the-database)
     + [Create the database with a single song](#create-the-database-with-a-single-song)
@@ -94,6 +99,7 @@ Business impact of the project is going to be studied using a carefully designed
 │
 ├── config                            <- Directory for configuration files 
 │   ├── local/                        <- Directory for keeping environment variables and other local configurations that *do not sync** to Github 
+│   ├── parameter.yaml                <- Config file to store variables
 │   ├── logging/                      <- Configuration of python loggers
 │   ├── flaskconfig.py                <- Configurations for Flask API 
 │
@@ -118,7 +124,9 @@ Business impact of the project is going to be studied using a carefully designed
 ├── reference/                        <- Any reference material relevant to the project
 │
 ├── src/                              <- Source data for the project 
-│
+│   ├── rds_db.py                     <- Python file for db creation
+|   ├── copy_s3.py                    <- Python file for copying files to s3
+|
 ├── test/                             <- Files necessary for running model tests (see documentation below) 
 │
 ├── app.py                            <- Flask wrapper for running the model 
@@ -126,6 +134,9 @@ Business impact of the project is going to be studied using a carefully designed
 ├── requirements.txt                  <- Python package dependencies
 ├── run.sh                            <- Bash script run by docker
 ├── run_docker.sh                     <- Bash script to run the Docker image
+├── Dockerfile                        <- dockerfile 
+├── .mysqlconfig                      <- config file Database environment variable
+├── .awscongig                        <- config file for aws environment variable
 ```
 
 <!-- toc -->
