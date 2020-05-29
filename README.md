@@ -67,6 +67,11 @@ Business impact of the project is going to be studied using a carefully designed
 
 
 - [Directory structure](#directory-structure)
+- [Build the docker image](#Build-the-docker-image)
+- [To copy file on S3](#To-copy-file-on-S3)
+- [To create Database locally](#To-create-Database-locally)
+- [To create Database on AWS RDS](#To-create-Database-on-AWS-RDS)
+- [Setting the environment variables](#Setting-the-environment-variables)
 - [Running the app](#running-the-app)
   * [1. Initialize the database](#1-initialize-the-database)
     + [Create the database with a single song](#create-the-database-with-a-single-song)
@@ -86,14 +91,17 @@ Business impact of the project is going to be studied using a carefully designed
 
 ```
 ├── README.md                         <- You are here
-├── api
+├── app
 │   ├── static/                       <- CSS, JS files that remain static
 │   ├── templates/                    <- HTML (or other code) that is templated and changes based on a set of inputs
+|   ├── run.sh                            <- Bash script run by docker
+|   ├── run_docker.sh                     <- Bash script to run the Docker image
 │   ├── boot.sh                       <- Start up script for launching app in Docker container.
 │   ├── Dockerfile                    <- Dockerfile for building image to run app  
 │
 ├── config                            <- Directory for configuration files 
 │   ├── local/                        <- Directory for keeping environment variables and other local configurations that *do not sync** to Github 
+│   ├── parameter.yaml                <- Config file to store variables
 │   ├── logging/                      <- Configuration of python loggers
 │   ├── flaskconfig.py                <- Configurations for Flask API 
 │
@@ -118,13 +126,70 @@ Business impact of the project is going to be studied using a carefully designed
 ├── reference/                        <- Any reference material relevant to the project
 │
 ├── src/                              <- Source data for the project 
-│
+│   ├── rds_db.py                     <- Python file for db creation
+|   ├── copy_s3.py                    <- Python file for copying files to s3
+|
 ├── test/                             <- Files necessary for running model tests (see documentation below) 
 │
 ├── app.py                            <- Flask wrapper for running the model 
 ├── run.py                            <- Simplifies the execution of one or more of the src scripts  
-├── requirements.txt                  <- Python package dependencies 
+├── requirements.txt                  <- Python package dependencies
+├── Dockerfile                        <- dockerfile 
+├── .mysqlconfig                      <- config file Database environment variable
+├── .awsconfig                        <- config file for aws environment variable
 ```
+
+<!-- tocstop -->
+## Setting the environment variables
+As a first step the environment variables need to be set. Please change the place holder values in the .mysqlconfig and .awsconfig files. Next run the following commands :
+
+`echo 'source .awsconfig' >> ~/.bashrc`
+
+`source ~/.bashrc`
+
+`echo 'source .mysqlconfig' >> ~/.bashrc`
+
+`source ~/.bashrc`
+
+<!-- tocstop -->
+## Build the docker image
+The docker file lies in the root directory. 
+`docker build -t s3_rds . `
+
+This command will the build the docker image s3_rds
+<!-- tocstop -->
+## To copy file on S3
+The data for this project can be found on https://www.kaggle.com/joniarroba/noshowappointments. This data has been made available by Joni Hoppen and licensed under https://creativecommons.org/licenses/by-nc-sa/4.0/ terms. Once downloaded place the .csv file in the data folder or update the config/parameter.yaml file with the location of the data. Also, update the bucket name, and address and name of the file intended to be kept on s3.
+Next, run the following command to pjut the file on S3 :
+
+`winpty sh app/run_docker.sh copy`
+
+run_docker.sh is a script in root directory that accepts an argument, either 'copy' or 'db' to copy a file on S3 or creatind a database locally or on AWS RDS respectively. The `winpty` command in the beginnig can be dropped for mac and linux users.
+<!-- tocstop -->
+## To create Database locally
+In order to create a database locally the same script is run with a 'db' argument. However, update 'loc_database' to 'local' in the config/parameter.yaml file.
+
+Run the following command
+
+`winpty sh app/run_docker.sh db`
+
+This will create a msia423.db in the data folder.
+<!-- tocstop -->
+## To create Database on AWS RDS
+In order to create a database locally the same script is run with a 'db' argument. However, update 'loc_database' to 'AWS' in the config/parameter.yaml file and build the docker image again.
+
+Run the following command
+
+`winpty sh app/run_docker.sh db`
+
+This will create a database on RDS with the name set in the .mysqlconfig file against the variable DATABSE_NAME. Currently it is msia423_db.
+
+The created database can be checked and queried using the command below :
+
+`winpty sh run_mysql_client.sh`
+
+
+
 
 ## Running the app
 ### 1. Initialize the database 
