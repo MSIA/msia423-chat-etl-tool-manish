@@ -7,7 +7,7 @@
 
 <body>
     <h3>
-         <a href = "{{ url_for('index') }}">Patient Show or No-show Data Entry</a>
+         <a href = "{{ url_for('index') }}">Patient Show or No-show</a>
     </h3>
 
     <hr/>
@@ -23,7 +23,6 @@
                 <th>Handcap</th>
                 <th>SMS_received</th>
                 <th>Interval</th>
-                <th>Show(Yes/No)</th>
             </tr>
          </thead>
 
@@ -39,12 +38,11 @@
                    <td>{{ no_show.Handcap }}</td>
                    <td>{{ no_show.SMS_received }}</td>
                    <td>{{ no_show.Interval }}</td>
-                   <td>{{ no_show.Show(Yes/No) }}</td>
                </tr>
             {% endfor %}
          </tbody>
       </table>
-      <form action="{{ url_for('add_entry') }}" method=post class=add-entry>
+      <form action="{{ url_for('predict') }}" method=post class=predict>
       <dl>
         <input type=text size=15 name=Gender placeholder="Gender">
         <input type=text size=15 name=Age placeholder="Age">
@@ -55,10 +53,10 @@
           <input type=text size=15 name=Handcap placeholder="Handcap">
         <input type=text size=15 name=SMS_received placeholder="SMS_received">
         <input type=text size=15 name=Interval placeholder="Interval">
-          <input type=text size=15 name=Show(Yes/No)  placeholder="Show(Yes/No) ">
-        <input type=submit value=Add>
+        <input type=submit value=Predict>
       </dl>
     </form>
-
+    <p style="font-family:Arial;color:#d46868;margin-left:20px"> The prediction is: </p>
+    <p style="font-family:Arial;color:#ff0066;margin-left:40px;font-weight: bold"> {{ prediction }}</p>
 </body>
 </html>
