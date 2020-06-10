@@ -30,10 +30,6 @@ else
     --env MYSQL_USER \
     --env MYSQL_PASSWORD \
     --env DATABASE_NAME \
-<<<<<<< 65334ba81790dcc863ba55086bfd204ae9b61609:app/run_docker.sh
     s3_rds app/run.sh $1
-=======
-    s3_rds app/run.sh $1 
->>>>>>> final code:app/run_docker.sh
 
 fi
