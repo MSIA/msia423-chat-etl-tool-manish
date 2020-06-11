@@ -203,6 +203,8 @@ Quite clearly app/run_docker.sh is the single entry for all the functionalities.
 
 ## Running the app
 Much like above a single script is the entry point for the 2 apps one for adding a record to the database and other for getting predictions.
+The first front end app can be used by the administrative staff for data entry. When there is decent amount of new data the model can be retrained.
+The second front end app is for making prediction for a patient when his booking is done,
 ### Building the docker image
 The dockerfile is placed in the app folder. Run the below command to build the image
 `docker build -f app/Dockerfile -t no_show .`
