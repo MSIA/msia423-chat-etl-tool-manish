@@ -96,7 +96,6 @@ Business impact of the project is going to be studied using a carefully designed
 │   ├── templates/                    <- HTML (or other code) that is templated and changes based on a set of inputs
 |   ├── run.sh                            <- Bash script run by docker
 |   ├── run_docker.sh                     <- Bash script to run the Docker image
-│   ├── boot.sh                       <- Start up script for launching app in Docker container.
 │   ├── Dockerfile                    <- Dockerfile for building image to run app  
 │
 ├── config                            <- Directory for configuration files 
@@ -128,10 +127,14 @@ Business impact of the project is going to be studied using a carefully designed
 ├── src/                              <- Source data for the project 
 │   ├── rds_db.py                     <- Python file for db creation
 |   ├── copy_s3.py                    <- Python file for copying files to s3
+|   ├── model.py                      <- Python file for model
+|   ├── rds_db.py                     <- Python file for rds_db.py
+|   ├── transform_data.py             <- Python file for transforming 
 |
 ├── test/                             <- Files necessary for running model tests (see documentation below) 
 │
-├── app.py                            <- Flask wrapper for running the model 
+├── app_predict.py                            <- Flask wrapper for running the model
+├── app.py                            <- Flask wrapper for running the model
 ├── run.py                            <- Simplifies the execution of one or more of the src scripts  
 ├── requirements.txt                  <- Python package dependencies
 ├── Dockerfile                        <- dockerfile 
